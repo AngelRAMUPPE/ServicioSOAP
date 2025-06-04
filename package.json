@@ -1,0 +1,19 @@
+{
+  "name": "ejemplosoap2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "soap": "^1.1.12",
+    "strong-soap": "^3.5.7"
+  }
+}

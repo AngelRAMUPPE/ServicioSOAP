@@ -1,0 +1,86 @@
+<definitions name="TiendaService"
+             targetNamespace="http://www.ejemplo.com/tienda"
+             xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:tns="http://www.ejemplo.com/tienda"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+  <types>
+    <xsd:schema targetNamespace="http://www.ejemplo.com/tienda"
+                xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      
+      <!-- obtenerTodosLosProductos -->
+      <xsd:element name="obtenerTodosLosProductosRequest" type="xsd:anyType"/>
+      <xsd:element name="obtenerTodosLosProductosResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="productos" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <!-- buscarProductoPorId -->
+      <xsd:element name="buscarProductoPorIdRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="buscarProductoPorIdResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="producto" type="xsd:string" minOccurs="0"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+    </xsd:schema>
+  </types>
+
+  <message name="obtenerTodosLosProductosRequest">
+    <part name="parameters" element="tns:obtenerTodosLosProductosRequest"/>
+  </message>
+  <message name="obtenerTodosLosProductosResponse">
+    <part name="parameters" element="tns:obtenerTodosLosProductosResponse"/>
+  </message>
+
+  <message name="buscarProductoPorIdRequest">
+    <part name="parameters" element="tns:buscarProductoPorIdRequest"/>
+  </message>
+  <message name="buscarProductoPorIdResponse">
+    <part name="parameters" element="tns:buscarProductoPorIdResponse"/>
+  </message>
+
+  <portType name="TiendaPortType">
+    <operation name="obtenerTodosLosProductos">
+      <input message="tns:obtenerTodosLosProductosRequest"/>
+      <output message="tns:obtenerTodosLosProductosResponse"/>
+    </operation>
+    <operation name="buscarProductoPorId">
+      <input message="tns:buscarProductoPorIdRequest"/>
+      <output message="tns:buscarProductoPorIdResponse"/>
+    </operation>
+  </portType>
+
+  <binding name="TiendaBinding" type="tns:TiendaPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="obtenerTodosLosProductos">
+      <soap:operation soapAction="obtenerTodosLosProductos"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+    <operation name="buscarProductoPorId">
+      <soap:operation soapAction="buscarProductoPorId"/>
+      <input><soap:body use="literal"/></input>
+      <output><soap:body use="literal"/></output>
+    </operation>
+  </binding>
+
+  <service name="TiendaService">
+    <port name="TiendaPort" binding="tns:TiendaBinding">
+      <soap:address location="http://localhost:8000/tienda"/>
+    </port>
+  </service>
+</definitions>
